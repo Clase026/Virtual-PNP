@@ -1,0 +1,11 @@
+In no specific order
+
+-Add ability to execute stored actions
+-Store actions
+-Store cls
+haracters
+-Toggle between character and player in chat interface
+-Format w/ bootstrap
+-Validate entries, or just return initial input if player borks the syntax
+-Make logins more meaningful
+-Add some kind of security to rooms/characters

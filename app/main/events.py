@@ -1,7 +1,7 @@
 from flask import session
 from flask.ext.socketio import emit, join_room, leave_room
 from .. import socketio
-
+from . import pnpparser
 
 @socketio.on('joined', namespace='/chat')
 def joined(message):
@@ -17,7 +17,8 @@ def left(message):
     """Sent by a client when the user entered a new message.
     The message is sent to all people in the room."""
     room = session.get('room')
-    emit('message', {'msg': session.get('name') + ':' + message['msg']}, room=room)
+    output = pnpparser.nice_parse_input(message['msg'])
+    emit('message', {'msg': session.get('name') + ': ' + output}, room=room)
 
 
 @socketio.on('left', namespace='/chat')
