@@ -9,3 +9,4 @@ haracters
 -Validate entries, or just return initial input if player borks the syntax
 -Make logins more meaningful
 -Add some kind of security to rooms/characters
+-Make output unalterable
