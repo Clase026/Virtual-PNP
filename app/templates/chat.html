@@ -8,7 +8,7 @@
             $(document).ready(function(){
                 //socket = io.connect('http://' + document.domain + ':' + location.port + '/chat');
                 //socket = io.connect(window.location.origin, {path: "/chat/socket.io"})
-                socket = io.connect(window.location.origin)
+                socket = io.connect()
                 socket.on('connect', function() {
                     socket.emit('joined', {});
                 });
