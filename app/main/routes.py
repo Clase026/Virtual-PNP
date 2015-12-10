@@ -3,7 +3,7 @@ from . import main
 from .forms import LoginForm
 
 
-@main.route('/', methods=['GET', 'POST'])
+@main.route('/login', methods=['GET', 'POST'])
 def index():
     """"Login form to enter a room."""
     form = LoginForm()
@@ -17,7 +17,7 @@ def index():
     return render_template('index.html', form=form)
 
 
-@main.route('/chat')
+@main.route('/')
 def chat():
     """Chat room. The user's name and room must be stored in
     the session."""
