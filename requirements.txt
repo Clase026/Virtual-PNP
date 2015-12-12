@@ -1,5 +1,5 @@
 backports-abc==0.4
-Brlapi==0.6.1
+Brlapi==0.6.0
 chardet==2.2.1
 checkbox-ng==0.3
 checkbox-support==0.2
