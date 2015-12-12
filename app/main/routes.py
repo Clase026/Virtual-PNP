@@ -4,9 +4,9 @@ from .forms import LoginForm
 
 
 #@main.route('/login', methods=['GET', 'POST'])
-@main.route('/signin', methods=['POST'])
-def login():
-    """"Login form to enter a room."""
+@main.route('/dosignin', methods=['POST'])
+def dosignin():
+    """"Action to enter a room from the login page."""
     session["name"] = request.form['inputName']
     session["room"] = request.form['inputRoom']
     return redirect(url_for('.chat'))
@@ -21,6 +21,10 @@ def login():
 
     #return render_template('index.html', form=form)
 
+@main.route('/signin', methods=['GET'])
+def signin():
+    """The login form to enter a room"""
+    return render_template('index.html')
 
 @main.route('/')
 def chat():
