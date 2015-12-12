@@ -13,9 +13,17 @@
         <h1>Virtual P&P Login</h1>
         <form method="POST">
             {{ form.hidden_tag() }}
-            {{ form.name.label }}: {{ form.name() }} {% for error in form.name.errors %}{{ error }}{% endfor %}<br>
-            {{ form.room.label }}: {{ form.room() }} {% for error in form.room.errors %}{{ error }}{% endfor %}<br>
-            {{ form.submit() }}
+            <div class="form-group">
+                <label for={{ form.name.id }}>{{ form.name.label }}:</label>
+                 {{ form.name() }}
+            </div>
+            <div class="form-group">
+                <label for={{ form.room.id }}>{{ form.room.label }}:</label>
+                {{ form.room.label }}: {{ form.room() }}
+            </div>
+            <div class="form-group">
+                {{ form.submit() }}
+            </div>
         </form>
     </body>
 </html>
