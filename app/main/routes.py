@@ -3,7 +3,7 @@ from . import main
 from .forms import LoginForm
 
 
-@main.route('/login', methods=['GET', 'POST'])
+@main.route('/login/', methods=['GET', 'POST'])
 def index():
     """"Login form to enter a room."""
     form = LoginForm()
