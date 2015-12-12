@@ -7,9 +7,10 @@ from .forms import LoginForm
 @main.route('/dosignin', methods=['POST'])
 def dosignin():
     """"Action to enter a room from the login page."""
-    session["name"] = request.form['inputName']
-    session["room"] = request.form['inputRoom']
-    return redirect(url_for('.chat'))
+    if request.method == "POST":
+        session["name"] = request.form['inputName']
+        session["room"] = request.form['inputRoom']
+        return redirect(url_for('.chat'))
     #form = LoginForm()
     #if form.validate_on_submit():
         #session['name'] = form.name.data
