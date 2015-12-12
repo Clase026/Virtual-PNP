@@ -21,7 +21,7 @@ def dosignin():
 
     #return render_template('index.html', form=form)
 
-@main.route('/signin', methods=['GET'])
+@main.route('/signin/', methods=['GET'])
 def signin():
     """The login form to enter a room"""
     return render_template('index.html')
