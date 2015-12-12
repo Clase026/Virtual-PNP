@@ -1,7 +1,7 @@
 from flask import session, redirect, url_for, render_template, request
 from . import main
 from .forms import LoginForm
-
+from logging import StreamHandler
 
 #@main.route('/login', methods=['GET', 'POST'])
 @main.route('/dosignin', methods=['POST'])
@@ -33,7 +33,7 @@ def chat():
     the session."""
     name = session.get('name', '')
     room = session.get('room', '')
-    print(name, room)
+    raise ValueError(name + room)
     if name == '' or room == '':
         return redirect(url_for('.index'))
     return render_template('chat.html', name=name, room=room)
