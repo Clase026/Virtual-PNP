@@ -10,15 +10,20 @@
         <title>Virtual P&P Login</title>
     </head>
     <body>
-        <div class="container">
-            <form class="form-signin" method="POST" action="dosignin">
-                <h2 class="form-signin-heading">Virtual P&P sign in</h2>
-                <label for="inputName" class="sr-only">Name</label>
-                <input id="inputName" class="form-control" placeholder="Name" required autofocus>
-                <label for="inputRoom" class="sr-only">Room</label>
-                <input id="inputRoom" class="form-control" placeholder="Room" required>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Enter Game</button>
-            </form>
-        </div>
+        <h1>Virtual P&P Login</h1>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                <label for={{ form.name.id }}>{{ form.name.label }}:</label>
+                {{ form.name() }}
+            </div>
+            <div class="form-group">
+                <label for={{ form.room.id }}>{{ form.room.label }}:</label>
+                {{ form.room() }}
+            </div>
+            <div class="form-group">
+                {{ form.submit() }}
+            </div>
+        </form>
     </body>
 </html>
