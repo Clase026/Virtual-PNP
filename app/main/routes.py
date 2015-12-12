@@ -3,19 +3,23 @@ from . import main
 from .forms import LoginForm
 
 
-@main.route('/login/', methods=['GET', 'POST'])
-def index():
+#@main.route('/login', methods=['GET', 'POST'])
+@main.route('/signin', methods=['POST'])
+def login():
     """"Login form to enter a room."""
-    form = LoginForm()
-    if form.validate_on_submit():
-        session['name'] = form.name.data
-        session['room'] = form.room.data
-        return redirect(url_for('.chat'))
-    elif request.method == 'GET':
-        form.name.data = session.get('name', '')
-        form.room.data = session.get('room', '')
+    session["name"] = request.form['inputName']
+    session["room"] = request.form['inputRoom']
+    return redirect(url_for('.chat'))
+    #form = LoginForm()
+    #if form.validate_on_submit():
+        #session['name'] = form.name.data
+        #session['room'] = form.room.data
+        #return redirect(url_for('.chat'))
+    #elif request.method == 'GET':
+        #form.name.data = session.get('name', '')
+        #form.room.data = session.get('room', '')
 
-    return render_template('index.html', form=form)
+    #return render_template('index.html', form=form)
 
 
 @main.route('/')
