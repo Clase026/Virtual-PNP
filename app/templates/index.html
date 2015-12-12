@@ -14,9 +14,9 @@
             <form class="form-signin" method=post action="{{ url_for('.dosignin') }}">
                 <h2 class="form-signin-heading">Virtual P&P sign in</h2>
                 <label for="inputName" class="sr-only">Name</label>
-                <input id="inputName" type="text" class="form-control" placeholder="Name" required autofocus>
+                <input id="inputName" name="inputName" type="text" class="form-control" placeholder="Name" required autofocus>
                 <label for="inputRoom" class="sr-only">Room</label>
-                <input id="inputRoom" type="text" class="form-control" placeholder="Room" required>
+                <input id="inputRoom" name="inputRoom" type="text" class="form-control" placeholder="Room" required>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Enter Game</button>
             </form>
         </div>

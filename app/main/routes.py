@@ -10,7 +10,6 @@ def dosignin():
     if request.method == "POST":
         session["name"] = request.form['inputName']
         session["room"] = request.form['inputRoom']
-        raise ValueError("Code executes to redirect")
         return redirect(url_for('.chat'))
     #form = LoginForm()
     #if form.validate_on_submit():
@@ -34,7 +33,6 @@ def chat():
     the session."""
     name = session.get('name', '')
     room = session.get('room', '')
-    raise ValueError(name + room)
     if name == '' or room == '':
         return redirect(url_for('.index'))
     return render_template('chat.html', name=name, room=room)
