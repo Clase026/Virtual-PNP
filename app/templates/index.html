@@ -15,11 +15,11 @@
             {{ form.hidden_tag() }}
             <div class="form-group">
                 <label for={{ form.name.id }}>{{ form.name.label }}:</label>
-                 {{ form.name() }}
+                {{ form.name() }}
             </div>
             <div class="form-group">
                 <label for={{ form.room.id }}>{{ form.room.label }}:</label>
-                {{ form.room.label }}: {{ form.room() }}
+                {{ form.room() }}
             </div>
             <div class="form-group">
                 {{ form.submit() }}
