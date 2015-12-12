@@ -5,5 +5,5 @@ from wtforms.validators import Required
 class LoginForm(Form):
     """Accepts a nickname and a room."""
     name = StringField('Name',id="Name",validators=[Required()])
-    room = Field('Room',id="Room",validators=[Required()])
+    room = StringField('Room',id="Room",validators=[Required()])
     submit = SubmitField('Enter Chatroom')
