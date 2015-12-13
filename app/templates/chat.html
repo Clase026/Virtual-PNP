@@ -46,13 +46,46 @@
             }
         </script>
     </head>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Virtual P&P</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Default Actions</a></li>
+            <li><a href="#about">My Actions</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Edit Character <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Attributes and Saves</a></li>
+                <li><a href="#">Skills and Proficiencies</a></li>
+                <li><a href="#">Attacks and Defenses</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Fluff</li>
+                <li><a href="#">Motivations</a></li>
+                <li><a href="#">Other Notes</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" onclick="leave_room();">Log Out</a></li>
+            <li><a href="#">Account Settings</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
     <body>
         <div class="container">
-            <h1>Virtual P&P: {{ room }}</h1>
+            <h1>{{ room }}</h1>
             <div class="chat" id="chat"></div>
             <input id="text" size="80" placeholder="Enter your message here">
-            <br>
-            <a href="#" onclick="leave_room();">Leave this room</a>
         </div>
     </body>
 </html>
