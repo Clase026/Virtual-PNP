@@ -20,11 +20,11 @@
                     socket.emit('joined', {});
                 });
                 socket.on('status', function(data) {
-                    $('.chat').append('<p><' + data.msg + '></p>');
+                    $('#chat').append('<p><' + data.msg + '></p>');
                     <!--$('#chat').scrollTop($('#chat')[0].scrollHeight);-->
                 });
                 socket.on('message', function(data) {
-                    $('.chat').append('<p><' + data.msg +  '></p>');
+                    $('#chat').append('<p><' + data.msg +  '></p>');
                     <!--$('#chat').scrollTop($('#chat')[0].scrollHeight);-->
                 });
                 $('#text').keypress(function(e) {
@@ -48,7 +48,7 @@
     </head>
     <body>
         <h1>Virtual P&P: {{ room }}</h1>
-        <div class="chat"></div><br><br>
+        <div class="container" id="chatbox"></div><br><br>
         <input id="text" size="80" placeholder="Enter your message here"><br><br>
         <a href="#" onclick="leave_room();">Leave this room</a>
     </body>
