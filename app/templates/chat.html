@@ -1,88 +1,47 @@
-<html>
-    <head>
-        <!--Bootstrap things-->
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-        <link rel="stylesheet" href="../static/chat.css">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-        <title>Virtual P&P: {{ room }}</title>
-        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
-        <script type="text/javascript" charset="utf-8">
-            var socket;
-            $(document).ready(function(){
-                //socket = io.connect(window.location.origin, {path: "/chat/socket.io"})
-                socket = io.connect()
-                socket.on('connect', function() {
-                    socket.emit('joined', {});
-                });
-                socket.on('status', function(data) {
-                    $('#chat').append('<p class="status">' + data.msg + '</p>');
-                });
-                socket.on('message', function(data) {
-                    $('#chat').append('<p class="message">' + data.msg +  '</p>');
-                });
-                $('#text').keypress(function(e) {
-                    var code = e.keyCode || e.which;
-                    if (code == 13) {
-                        text = $('#text').val();
-                        $('#text').val('');
-                        socket.emit('text', {msg: text});
-                    }
-                });
-            });
-            function leave_room() {
-                socket.emit('left', {}, function() {
-                    socket.disconnect();
-
-                    // go back to the login page
-                    window.location.href = "{{ url_for('main.signin') }}";
-                });
+{% extends "InGame.html" %}
+{% block pagename %}{{ room }}{% endblock %}
+{% block extrascripts %}
+<link rel="stylesheet" href="../static/chat.css">
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+    var socket;
+    $(document).ready(function(){
+        //socket = io.connect(window.location.origin, {path: "/chat/socket.io"})
+        socket = io.connect()
+        socket.on('connect', function() {
+            socket.emit('joined', {});
+        });
+        socket.on('status', function(data) {
+            $('#chat').append('<p class="status">' + data.msg + '</p>');
+        });
+        socket.on('message', function(data) {
+            $('#chat').append('<p class="message">' + data.msg +  '</p>');
+        });
+        $('#text').keypress(function(e) {
+            var code = e.keyCode || e.which;
+            if (code == 13) {
+                text = $('#text').val();
+                $('#text').val('');
+                socket.emit('text', {msg: text});
             }
-        </script>
-    </head>
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Virtual P&P</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Default Actions</a></li>
-            <li><a href="#about">My Actions</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Edit Character <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Attributes and Saves</a></li>
-                <li><a href="#">Skills and Proficiencies</a></li>
-                <li><a href="#">Attacks and Defenses</a></li>
-                <li role="separator" class="divider"></li>
-                <li class="dropdown-header">Fluff</li>
-                <li><a href="#">Motivations</a></li>
-                <li><a href="#">Other Notes</a></li>
-              </ul>
-            </li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#" onclick="leave_room();">Log Out</a></li>
-            <li><a href="#">Account Settings</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-    <body>
-        <div class="container">
-            <h1>{{ room }}</h1>
-            <div class="chat" id="chat"></div>
-            <input id="text" size="80" placeholder="Enter your message here">
-        </div>
-    </body>
-</html>
+        });
+    });
+    function leave_room() {
+        socket.emit('left', {}, function() {
+            socket.disconnect();
+
+            // go back to the login page
+            window.location.href = "{{ url_for('main.signin') }}";
+        });
+    }
+</script>
+{% endblock %}
+{% block body %}
+<body>
+    <div class="container">
+        <h1>{{ room }}</h1>
+        <div class="chat" id="chat"></div>
+        <input id="text" size="80" placeholder="Enter your message here">
+    </div>
+</body>
+{% endblock %}
