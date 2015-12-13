@@ -1,11 +1,13 @@
 body {
     padding-left: 5%;
     height:100%;
+    width:100%;
 }
 
-.jumbotron {
+.container {
     min-height: 60%;
     max-height:60%;
+    width:60%;
     overflow: auto;
     padding-top: 5%;
 }
