@@ -13,19 +13,16 @@
         <script type="text/javascript" charset="utf-8">
             var socket;
             $(document).ready(function(){
-                //socket = io.connect('http://' + document.domain + ':' + location.port + '/chat');
                 //socket = io.connect(window.location.origin, {path: "/chat/socket.io"})
                 socket = io.connect()
                 socket.on('connect', function() {
                     socket.emit('joined', {});
                 });
                 socket.on('status', function(data) {
-                    $('#chat').append('<p><' + data.msg + '></p>');
-                    <!--$('#chat').scrollTop($('#chat')[0].scrollHeight);-->
+                    $('#chat').append('<p>' + data.msg + '</p>');
                 });
                 socket.on('message', function(data) {
                     $('#chat').append('<p>' + data.msg +  '</p>');
-                    <!--$('#chat').scrollTop($('#chat')[0].scrollHeight);-->
                 });
                 $('#text').keypress(function(e) {
                     var code = e.keyCode || e.which;
