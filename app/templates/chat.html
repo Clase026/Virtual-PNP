@@ -47,10 +47,12 @@
         </script>
     </head>
     <body>
-        <h1>Virtual P&P: {{ room }}</h1>
-        <div class="container" id="chat"></div>
-        <input id="text" size="80" placeholder="Enter your message here">
-        <br>
-        <a href="#" onclick="leave_room();">Leave this room</a>
+        <div class="container">
+            <h1>Virtual P&P: {{ room }}</h1>
+            <div class="chat" id="chat"></div>
+            <input id="text" size="80" placeholder="Enter your message here">
+            <br>
+            <a href="#" onclick="leave_room();">Leave this room</a>
+        </div>
     </body>
 </html>
