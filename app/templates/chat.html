@@ -19,10 +19,10 @@
                     socket.emit('joined', {});
                 });
                 socket.on('status', function(data) {
-                    $('#chat').append('<p>' + data.msg + '</p>');
+                    $('#chat').append('<p class="status">' + data.msg + '</p>');
                 });
                 socket.on('message', function(data) {
-                    $('#chat').append('<p>' + data.msg +  '</p>');
+                    $('#chat').append('<p class="message">' + data.msg +  '</p>');
                 });
                 $('#text').keypress(function(e) {
                     var code = e.keyCode || e.which;
