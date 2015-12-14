@@ -6,8 +6,11 @@ body {
 
 .chat {
     height: 60%;
-    width: 60%;
     overflow: auto;
+}
+
+#chatsidebar {
+    height: 60%;
 }
 
 #text {
