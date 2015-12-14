@@ -32,13 +32,12 @@
                 e.preventDefault()
             }
         });
-        function log_out() {
+    });
+    function log_out(socket) {
         socket.emit('left', {}, function() {
             socket.disconnect();
-            window.location.href = "{{ url_for('main.signin') }}";
         }); }
-        $(document).on("unload",log_out());
-    });
+    $(document).on("unload",log_out(socket));
 
 </script>
 {% endblock %}
