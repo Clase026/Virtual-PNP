@@ -1,6 +1,13 @@
 {% extends "in_game.html" %}
 {% block pagename %}Edit Character - Attributes{% endblock %}
-{% block extrascripts %}<link rel="stylesheet" href="../static/signin.css">{% endblock %}
+{% block extrascripts %}
+<link rel="stylesheet" href="../static/signin.css">
+<script type="text/javascript" charset="utf-8">
+    $('document').ready(function() {
+        $('#strength').val({{ session.strength }})
+    })
+</script>
+{% endblock %}
 {% block body %}
 <form method=post action ={{ url_for(".save_attributes") }}>
     <h2 class="form-signin-heading">Attributes and Saves</h2>

@@ -109,7 +109,7 @@ def replace_keywords(player_string):
             keyword = player_string[keyword_start:keyword_end]
             keyword_value = session.get(keyword)
             if keyword_value == None:
-                return "Keyword '" + keyword + "' not Found"
+                return "Keyword '" + keyword + "' not found. Check your spelling and try again"
             player_string = player_string.replace("[" + keyword + "]",keyword_value)
     return player_string
 

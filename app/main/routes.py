@@ -39,4 +39,5 @@ def save_attributes():
 @main.route('/editattributes/')
 def edit_attributes():
     """A form page that lets the player edit their character's saving throws and attributes"""
+    session['strength'] = session.get('strength', '')
     return render_template('edit_attributes.html', saved='')
