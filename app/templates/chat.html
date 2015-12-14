@@ -32,14 +32,14 @@
                 e.preventDefault()
             }
         });
-    });
-    function log_out() {
+        function log_out() {
         socket.emit('left', {}, function() {
             socket.disconnect();
             window.location.href = "{{ url_for('main.signin') }}";
-        });
-    }
-    $(document).on("unload",log_out());
+        }); }
+        $(document).on("unload",log_out());
+    });
+
 </script>
 {% endblock %}
 {% block body %}
