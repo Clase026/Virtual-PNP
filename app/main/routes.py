@@ -44,9 +44,9 @@ def save_attributes():
     if request.method == "POST":
         session['strength'] = request.form['strength']
         saved = SAVE_MESSAGE
-        return render_template('edit_attributes', saved=saved)
+        return render_template('edit_attributes.html', saved=saved)
 
 @main.route('/editcharacter/attributes/')
 def edit_attributes():
     """A form page that lets the player edit their character's saving throws and attributes"""
-    return render_template('edit_attributes', saved='')
+    return render_template('edit_attributes.html', saved='')
