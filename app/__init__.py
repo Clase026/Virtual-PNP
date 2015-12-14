@@ -14,7 +14,6 @@ def create_app(debug=True):
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
     db.init_app(app=app)
-    db.drop_all(app=app)
     socketio.init_app(app)
     return app
 
