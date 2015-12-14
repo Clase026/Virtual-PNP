@@ -33,6 +33,7 @@ def save_attributes():
     """Saves changes that players make to their character's attributes and saving throws"""
     if request.method == "POST":
         session['Strength'] = request.form['Strength']
+        session['StrengthBonus'] = request.form['StrengthBonus']
         session['StrengthSave'] = request.form['StrengthSave']
         saved = SAVE_MESSAGE
         return render_template('edit_attributes.html', saved=saved)
@@ -41,5 +42,6 @@ def save_attributes():
 def edit_attributes():
     """A form page that lets the player edit their character's saving throws and attributes"""
     session['Strength'] = session.get('Strength', '')
+    session['StrengthBonus'] = session.get('StrengthBonus', '')
     session['StrengthSave'] = session.get('StrengthSave', '')
     return render_template('edit_attributes.html', saved='')

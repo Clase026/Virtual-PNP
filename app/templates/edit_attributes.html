@@ -7,20 +7,26 @@
         $('#Strength').val({{ session.Strength }})
         $('#StrengthSave').val({{ session.StrengthSave }})
     })
+    $('#Strength').focusout(function(){
+        $('#StrengthBonus').val($('#Strength').val())
+    })
 </script>
 {% endblock %}
 {% block body %}
 <form method=post action ={{ url_for(".save_attributes") }}>
     <h2 class="form-signin-heading">Attributes and Saves</h2>
     <div class="row">
-        <div class="col-md-5">
-            <label for="Strength" class="sr-only">Name</label>
-            <span class="label label-primary">Strength</span> <input id="Strength" name="Strength" class="attribute" type="text" class="form-control" required>
+        <div class="col-md-4">
+            <label for="Strength" class="sr-only">Strength</label>
+            <span class="label label-primary">Strength</span> <input id="Strength" name="Strength" class="attribute" type="number" class="form-control" required>
         </div>
-        <div class="col-md-2"></div>
-        <div class="col-md-5">
-            <label for="StrengthSave" class="sr-only">Name</label>
-            <span class="label label-primary">Strength Save</span> <input id="StrengthSave" name="StrengthSave" class="save" type="text" class="form-control" required>
+        <div class="col-md-4">
+            <label for="StrengthBonus" class="sr-only">Strength Bonus</label>
+            <span class="label label-primary">Strength Bonus</span> <input id="StrengthBonus" name="StrengthBonus" class="bonus" type="number" class="form-control" required>
+        </div>
+        <div class="col-md-4">
+            <label for="StrengthSave" class="sr-only">Strength Saving Throw</label>
+            <span class="label label-primary">Strength Save</span> <input id="StrengthSave" name="StrengthSave" class="save" type="number" class="form-control" required>
         </div>
     </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Save Changes</button>

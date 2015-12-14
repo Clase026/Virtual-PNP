@@ -33,14 +33,13 @@
             }
         });
     });
-    function leave_room() {
+    function log_out() {
         socket.emit('left', {}, function() {
             socket.disconnect();
-
-            // go back to the login page
             window.location.href = "{{ url_for('main.signin') }}";
         });
     }
+    $(document).on("unload",log_out());
 </script>
 {% endblock %}
 {% block body %}
