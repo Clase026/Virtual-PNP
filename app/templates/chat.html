@@ -33,11 +33,6 @@
             }
         });
     });
-    function log_out(socket) {
-        socket.emit('left', {}, function() {
-            socket.disconnect();
-        }); }
-    $(document).on("unload",log_out(socket));
 
 </script>
 {% endblock %}

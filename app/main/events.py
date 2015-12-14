@@ -21,7 +21,7 @@ def text(message):
     emit('message', {'msg': session.get('name') + ': ' + output}, room=room)
 
 
-@socketio.on('left')
+@socketio.on('disconnect')
 def left(message):
     """Sent by clients when they leave a room.
     A status message is broadcast to all people in the room."""
