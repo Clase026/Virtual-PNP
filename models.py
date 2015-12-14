@@ -1,14 +1,11 @@
 # -*- encoding: utf-8 -*-
 # begin
 
-from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import deferred
-from chat import app
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask.ext.sqlalchemy import SQLAlchemy
 
-db = SQLAlchemy(app)
-
-db.drop_all(app=app)
+db = SQLAlchemy()
 
 class Game (db.Model):
     __tablename__ = "Game"
