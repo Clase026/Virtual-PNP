@@ -6,6 +6,10 @@ body {
 
 .chat {
     height: 60%;
-    width:60%;
+    width: 60%;
     overflow: auto;
+}
+
+#text {
+    width: 60%;
 }
