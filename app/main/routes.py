@@ -1,6 +1,6 @@
 from flask import session, redirect, url_for, render_template, request
 from . import main
-from models import db
+import models
 
 SAVE_MESSAGE = "Changes saved successfully!"
 
@@ -13,7 +13,7 @@ def signin():
 def dosignin():
     """"Action to enter a room from the login page."""
     if request.method == "POST":
-        session["name"] = db.Player.check_username_password(request.form["inputName"],request.form["inputPassword"])
+        session["name"] = models.db.Player.check_username_password(request.form["inputName"],request.form["inputPassword"])
         if session.get("player") == None:
             return render_template('index.html',error='Incorrect username or password')
         session["room"] = "Test"
@@ -27,10 +27,10 @@ def signup():
 @main.route('/dosignup', methods=['POST'])
 def dosignup():
     """Action to sign a user up for virtual P&P"""
-    if not db.Player.check_username_taken(request.form["inputName"]):
-        new_player = db.Player(request.form["inputName"],request.form["inputPassword"])
-        db.session.add(new_player)
-        db.session.commit()
+    if not models.db.Player.check_username_taken(request.form["inputName"]):
+        new_player = models.db.Player(request.form["inputName"],request.form["inputPassword"])
+        models.db.session.add(new_player)
+        models.db.session.commit()
         return redirect(url_for('.signin',error=''))
     else:
         return redirect(url_for('.signup',error='Username taken'))
@@ -49,18 +49,18 @@ def chat():
 def save_attributes():
     """Saves changes that players make to their character's attributes and saving throws"""
     if request.method == "POST":
-        character = db.Character.get_character_by_username_game(session.get('name'),session.get('room'))
+        character = models.db.Character.get_character_by_username_game(session.get('name'),session.get('room'))
         character.attributes = request.form['Strength'] + '10,10,10,10,10'
         character.attributebonuses = request.form['StrengthBonus'] + '0,0,0,0,0'
         character.savingthrows = request.form['StrengthSave'] + '0,0,0,0,0'
-        db.session.commit()
+        models.db.session.commit()
         saved = SAVE_MESSAGE
         return render_template('edit_attributes.html', saved=saved)
 
 @main.route('/editattributes/')
 def edit_attributes():
     """A form page that lets the player edit their character's saving throws and attributes"""
-    character = db.Character.get_character_by_username_game(session.get('name'),session.get('room'))
+    character = models.db.Character.get_character_by_username_game(session.get('name'),session.get('room'))
     session['Strength'] = character.get_proficiency('Strength')
     session['StrengthBonus'] = character.get_proficiency_bonus('Strength')
     session['StrengthSave'] = character.get_save_bonuses('Strength')
