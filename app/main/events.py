@@ -2,7 +2,7 @@ from flask import session
 from flask.ext.socketio import emit, join_room, leave_room
 from .. import socketio
 from . import pnpparser
-#from models import db
+from models import db
 
 @socketio.on('joined')
 def joined(message):

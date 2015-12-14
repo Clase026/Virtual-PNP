@@ -4,8 +4,7 @@
 from sqlalchemy.orm import deferred
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask.ext.sqlalchemy import SQLAlchemy
-from chat import app
-db = SQLAlchemy(app)
+db = SQLAlchemy()
 
 class Game (db.Model):
     __tablename__ = "Game"
