@@ -1,3 +1,5 @@
 .attribute, .save {
     max-width: 200px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
