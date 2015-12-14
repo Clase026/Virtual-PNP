@@ -4,10 +4,11 @@
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import deferred
 from chat import app
+from werkzeug.security import generate_password_hash, check_password_hash
 
 db = SQLAlchemy(app)
 
-
+db.drop_all(app=app)
 
 class Game (db.Model):
     __tablename__ = "Game"
@@ -25,15 +26,39 @@ class Game (db.Model):
         self.messagelog = ""
         self.gmnotes = ""
 
+    def set_message_log(self, message):
+        num_messages = self.messagelog.count('<p')
+        self.messagelog = self.messagelog + message
+        if num_messages > 30:
+            first_message_end = self.messagelog.find('p>') + 2
+            self.messagelog = self.messagelog[first_message_end:]
+        db.session.commit()
 
 class Player (db.Model):
     __tablename__ = "Player"
     username = db.Column('UserName', db.Unicode, primary_key=True)
     pwhash = db.Column('PWHash', db.Unicode)
 
-    def __init__(self,username,pwhash):
+    def __init__(self,username,password):
         self.username = username
-        self.pwhash = pwhash
+        self.pwhash = generate_password_hash(password)
+
+    def get_player_by_username(self,search_name):
+        player = db.session.query(self).filter_by(self.username == search_name).first()
+        return player
+
+    def check_username_taken(self,new_username):
+        if db.session.query(self).filter_by(self.username == new_username).first():
+            return True
+        else:
+            return False
+
+    def check_username_password(self,username,password):
+        login_player = db.session.query(Player).filter_by(self.username == username).first()
+        if check_password_hash(login_player.pwhash,password):
+            return login_player.username
+        else:
+            return None
 
 
 class Character (db.Model):
@@ -84,6 +109,10 @@ class Character (db.Model):
         self.flaw = ''
         self.spelllevels = '0,0,0,0,0,0,0,0,0'
         self.trait = ''
+
+    def get_character_by_username_game(self,username,game_id):
+        character = db.session.query(self).filter_by(self.player_username == username, self.game_gameid == game_id).first()
+        return character
 
     def get_attribute(self,attribute_name):
         cs_attributes = self.attributes.split(',')
