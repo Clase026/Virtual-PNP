@@ -32,7 +32,8 @@ def chat():
 def save_attributes():
     """Saves changes that players make to their character's attributes and saving throws"""
     if request.method == "POST":
-        session['strength'] = request.form['strength']
+        session['Strength'] = request.form['Strength']
+        session['StrengthSave'] = request.form['StrengthSave']
         saved = SAVE_MESSAGE
         return render_template('edit_attributes.html', saved=saved)
 

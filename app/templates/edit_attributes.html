@@ -4,15 +4,25 @@
 <link rel="stylesheet" href="../static/signin.css">
 <script type="text/javascript" charset="utf-8">
     $('document').ready(function() {
-        $('#strength').val({{ session.strength }})
+        $('#Strength').val({{ session.Strength }})
+        $('#StrengthSave').val({{ session.StrengthSave }})
     })
 </script>
 {% endblock %}
 {% block body %}
 <form method=post action ={{ url_for(".save_attributes") }}>
     <h2 class="form-signin-heading">Attributes and Saves</h2>
-    <label for="strength" class="sr-only">Name</label>
-    <input id="strength" name="strength" type="text" class="form-control" required autofocus>
+    <div class="row">
+        <div class="col-md-5">
+            <label for="Strength" class="sr-only">Name</label>
+            <span class="label label-primary">Strength</span> <input id="Strength" class="attribute" type="text" class="form-control" required>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-5">
+            <label for="StrengthSave" class="sr-only">Name</label>
+            <span class="label label-primary">Strength Save</span> <input id="StrengthSave" class="save" type="text" class="form-control" required>
+        </div>
+    </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Save Changes</button>
 </form>
     <p id="savemessage">{{ saved }}</p>
