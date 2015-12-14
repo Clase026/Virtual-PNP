@@ -13,9 +13,15 @@
         });
         socket.on('status', function(data) {
             $('#chat').append('<p class="status">' + data.msg + '</p>');
+            var chatdiv    = $('#chat');
+            var height = chatdiv[0].scrollHeight;
+            chatdiv.scrollTop(height);
         });
         socket.on('message', function(data) {
             $('#chat').append('<p class="message">' + data.msg +  '</p>');
+            var chatdiv    = $('#chat');
+            var height = chatdiv[0].scrollHeight;
+            chatdiv.scrollTop(height);
         });
         $('#text').keypress(function(e) {
             var code = e.keyCode || e.which;
