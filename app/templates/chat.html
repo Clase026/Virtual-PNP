@@ -1,4 +1,4 @@
-{% extends "InGame.html" %}
+{% extends "in_game.html" %}
 {% block pagename %}{{ room }}{% endblock %}
 {% block extrascripts %}
 <link rel="stylesheet" href="../static/chat.css">
@@ -37,11 +37,7 @@
 </script>
 {% endblock %}
 {% block body %}
-<body>
-    <div class="container">
-        <h1>{{ room }}</h1>
-        <div class="chat" id="chat"></div>
-        <input id="text" size="80" placeholder="Enter your message here">
-    </div>
-</body>
+<h1>{{ room }}</h1>
+<div class="chat" id="chat"></div>
+<input id="text" size="80" placeholder="Enter your message here" autofocus>
 {% endblock %}

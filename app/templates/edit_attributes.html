@@ -1,0 +1,12 @@
+{% extends "InGame.htnl" %}
+{% block pagename %}Edit Character - Attributes{% endblock %}
+{% black extrascripts %}<link rel="stylesheet" href="../static/signin.css">{% endblock %}
+{% block body %}
+<form method=post action ={{ url_for(".save_attributes") }}>
+    <h2 class="form-signin-heading">Attributes and Saves</h2>
+    <label for="strength" class="sr-only">Name</label>
+    <input id="strength" name="strength" type="text" class="form-control" required autofocus>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Save Changes</button>
+</form>
+    <p id="savemessage">{{ saved }}</p>
+{% endblock %}
