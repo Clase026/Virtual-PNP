@@ -46,7 +46,7 @@ def save_attributes():
         saved = SAVE_MESSAGE
         return render_template('edit_attributes.html', saved=saved)
 
-@main.route('/editcharacter/attributes/')
+@main.route('/editattributes/')
 def edit_attributes():
     """A form page that lets the player edit their character's saving throws and attributes"""
     return render_template('edit_attributes.html', saved='')
