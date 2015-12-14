@@ -174,17 +174,10 @@ class Actions (db.Model):
     actionname = db.Column('ActionName', db.Unicode)
     actionstring = db.Column('ActionString', db.Unicode)
     isuniversal = db.Column('IsUniversal', db.Boolean)
+    character_charid = db.Column('Character_CharID', db.Integer, db.ForeignKey('Character.CharID'))
 
     def __init__(self,actionstring,isuniversal):
         self.actionstring = actionstring
         self.isuniversal = isuniversal
-
-class Characteractions (db.Model):
-    __tablename__ = "CharacterActions"
-    character_charid = db.Column('Character_CharID', db.Integer, db.ForeignKey('Character.CharID'),primary_key=True)
-    actions_actionid = db.Column('Actions_ActionID', db.Integer, db.ForeignKey('Actions.ActionID'),primary_key=True)
-
-    character = db.relationship('Character', foreign_keys=character_charid)
-    actions = db.relationship('Actions', foreign_keys=actions_actionid)
 
 # end
